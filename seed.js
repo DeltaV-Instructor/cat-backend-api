@@ -1,19 +1,14 @@
+'use strict';
 require('dotenv').config();
 const mongoose = require('mongoose');
-
 const Cat = require('./models/cat');
 
 
 
 async function seed(){
-  // name: {type: String, require: true},
-  // color:{type: String, require: true},
-  // spayNeuter:{type: Boolean, require: true},
-  // location:{type: String, require: true}
   await mongoose.connect(
     process.env.DB_URL
   ).then(() =>console.log('Mongo DB is connected!')).catch(e=>console.log(e));
-  //add your records to the DB
 
   await Cat.create({
     name: 'Tony the tiger',
@@ -39,9 +34,6 @@ async function seed(){
 
   console.log('Closing the DB connection for our seed file');
   mongoose.disconnect();
-
-
 }
-
 
 seed();
